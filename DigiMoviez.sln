@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiMoviezClone.Domain", "DigiMoviezClone.Domain\DigiMoviezClone.Domain.csproj", "{9823BA7D-763E-46C8-A088-253238CFDC94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiMoviezClone.Application", "DigiMoviezClone.Application\DigiMoviezClone.Application.csproj", "{F6728C61-343A-4EF4-B031-5D2996F0DF2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiMoviezClone.Infrastructure", "DigiMoviezClone.Infrastructure\DigiMoviezClone.Infrastructure.csproj", "{BE2B4108-07A7-4E3D-85AD-75DFA4A6D524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiMoviezClone.API", "DigiMoviezClone.API\DigiMoviezClone.API.csproj", "{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9823BA7D-763E-46C8-A088-253238CFDC94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9823BA7D-763E-46C8-A088-253238CFDC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9823BA7D-763E-46C8-A088-253238CFDC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9823BA7D-763E-46C8-A088-253238CFDC94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6728C61-343A-4EF4-B031-5D2996F0DF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6728C61-343A-4EF4-B031-5D2996F0DF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6728C61-343A-4EF4-B031-5D2996F0DF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6728C61-343A-4EF4-B031-5D2996F0DF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2B4108-07A7-4E3D-85AD-75DFA4A6D524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2B4108-07A7-4E3D-85AD-75DFA4A6D524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2B4108-07A7-4E3D-85AD-75DFA4A6D524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2B4108-07A7-4E3D-85AD-75DFA4A6D524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

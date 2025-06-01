@@ -1,0 +1,6 @@
+@DigiMoviez_HostAddress = http://localhost:5163
+
+GET {{DigiMoviez_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
