@@ -9,8 +9,8 @@ namespace DigiMoviezClone.Application.MappingProfiles
     {
         public MovieProfile()
         {
-            CreateMap<Movie, MovieDto>();
-            CreateMap<CreateMovieDto, Movie>();
+            CreateMap<Movie, MovieResponseDto>();
+            CreateMap<CreateMovieRequestDto, Movie>();
         }
     }
 }

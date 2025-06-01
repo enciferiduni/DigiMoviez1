@@ -1,6 +1,6 @@
 ﻿namespace DigiMoviezClone.API.DTOs;
 
-public class MovieDto
+public class MovieResponseDto
 {
     public int Id { get; set; }
     public string Title { get; set; }=string.Empty;

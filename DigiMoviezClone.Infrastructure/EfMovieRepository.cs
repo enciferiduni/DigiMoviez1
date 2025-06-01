@@ -16,7 +16,7 @@ namespace DigiMoviezClone.Infrastructure.Repositories
 
         public async Task AddAsync(Movie movie)
         {
-            await _context.Movies.AddAsync(movie);
+            await _context.Movies.AddAsync(movie); 
             await _context.SaveChangesAsync();
         }
 
