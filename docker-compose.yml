@@ -1,0 +1,6 @@
+﻿services:
+  digimoviez:
+    image: digimoviez
+    build:
+      context: .
+      dockerfile: DigiMoviez/Dockerfile

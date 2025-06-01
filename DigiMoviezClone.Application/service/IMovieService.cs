@@ -14,4 +14,5 @@ public interface IMovieService
     Task AddAsync(CreateMovieRequestDto movie);
     Task<Movie?> GetByIdAsync(int id);
     Task<Movie?> GetAllAsync();
+    Task<Movie> AddAsync();
 }

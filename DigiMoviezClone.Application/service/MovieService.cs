@@ -42,24 +42,19 @@ namespace DigiMoviezClone.Application.Services
             await _movieRepository.DeleteAsync(id);
         }
 
-        public async Task<Movie> CreateMovie(Movie movie)
-        {
-            return await _movieRepository.AddAsync(movie);
-        }
-
         public async Task<Movie> FindMovie(int id)
         {
             return await _movieRepository.GetByIdAsync(id);
         }
 
-        public Task<Movie> createMovie(Movie movie)
+        public async Task<Movie> createMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            return await _movieServiceImplementation.AddAsync();
         }
 
-        public Task<Movie> findMovie(int id)
+        public async Task<Movie> findMovie(int id)
         {
-            throw new NotImplementedException();
+            return await _movieRepository.GetByIdAsync(id);
         }
 
         public Task UpdateAsync(Movie movie)
@@ -85,6 +80,11 @@ namespace DigiMoviezClone.Application.Services
         public Task<Movie?> GetAllAsync()
         {
             return _movieServiceImplementation.GetAllAsync();
+        }
+
+        public Task<Movie> AddAsync()
+        {
+            return _movieServiceImplementation.AddAsync();
         }
     }
 }
