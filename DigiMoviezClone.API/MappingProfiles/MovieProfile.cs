@@ -11,6 +11,7 @@ namespace DigiMoviezClone.Application.MappingProfiles
         {
             CreateMap<Movie, MovieResponseDto>();
             CreateMap<CreateMovieRequestDto, Movie>();
+            CreateMap<UpdateMovieRequestDto, Movie>();
         }
     }
 }

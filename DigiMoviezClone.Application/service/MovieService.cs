@@ -1,25 +1,15 @@
 ﻿using DigiMoviezClone.Domain.Entities;
 using DigiMoviezClone.Domain.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DigiMoviezClone.API.DTOs;
-using DigiMoviezClone.Application.DTOs;
 
 namespace DigiMoviezClone.Application.Services
 {
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        private IMovieService _movieServiceImplementation;
 
         public MovieService(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
-        }
-
-        public async Task<IEnumerable<Movie>> GetAllMoviesAsync()
-        {
-            return await _movieRepository.GetAllAsync();
         }
 
         public async Task<Movie?> GetMovieByIdAsync(int id)
@@ -27,29 +17,9 @@ namespace DigiMoviezClone.Application.Services
             return await _movieRepository.GetByIdAsync(id);
         }
 
-        public async Task AddMovieAsync(Movie movie)
-        {
-            await _movieRepository.AddAsync(movie);
-        }
-
-        public async Task UpdateMovieAsync(Movie movie)
-        {
-            await _movieRepository.UpdateAsync(movie);
-        }
-
-        public async Task DeleteMovieAsync(int id)
-        {
-            await _movieRepository.DeleteAsync(id);
-        }
-
-        public async Task<Movie> FindMovie(int id)
-        {
-            return await _movieRepository.GetByIdAsync(id);
-        }
-
         public async Task<Movie> createMovie(Movie movie)
         {
-            return await _movieServiceImplementation.AddAsync();
+            return await _movieRepository.AddAsync(movie);
         }
 
         public async Task<Movie> findMovie(int id)
@@ -57,34 +27,45 @@ namespace DigiMoviezClone.Application.Services
             return await _movieRepository.GetByIdAsync(id);
         }
 
-        public Task UpdateAsync(Movie movie)
+        public async Task<Movie> UpdateMovie(int id, Movie movie)
         {
-            return _movieServiceImplementation.UpdateAsync(movie);
+            var existingMovie = await findMovie(id);
+            if (existingMovie == null)
+            {
+                throw new KeyNotFoundException($"Movie with ID {id} not found.");
+            }
+
+            // Update only allowed properties (avoid overwriting ID)
+            existingMovie.Title = movie.Title;
+            existingMovie.Description = movie.Description;
+            existingMovie.ReleaseDate = movie.ReleaseDate;
+            existingMovie.Genre = movie.Genre;
+            // Add other properties as needed
+
+            await _movieRepository.UpdateAsync(existingMovie);
+
+            return existingMovie;
         }
 
-        public Task DeleteAsync(int id)
-        {
-            return _movieServiceImplementation.DeleteAsync(id);
-        }
 
-        public Task AddAsync(CreateMovieRequestDto movie)
+        public async Task<Movie> DeleteMovie(int id)
         {
-            return _movieServiceImplementation.AddAsync(movie);
+            var existingMovie = await findMovie(id);
+            if (existingMovie == null)
+            {
+                throw new KeyNotFoundException($"Movie with ID {id} not found.");
+            }
+            return await _movieRepository.DeleteAsync(existingMovie);
         }
 
         public Task<Movie?> GetByIdAsync(int id)
         {
-            return _movieServiceImplementation.GetByIdAsync(id);
+            return _movieRepository.GetByIdAsync(id);
         }
 
-        public Task<Movie?> GetAllAsync()
+        public Task<IEnumerable<Movie>> findAllMovies()
         {
-            return _movieServiceImplementation.GetAllAsync();
-        }
-
-        public Task<Movie> AddAsync()
-        {
-            return _movieServiceImplementation.AddAsync();
+            return _movieRepository.GetAllAsync();
         }
     }
 }

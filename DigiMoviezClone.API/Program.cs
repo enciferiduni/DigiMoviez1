@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DigiMoviezClone.API.Configuration;
+using DigiMoviezClone.Application.Services;
 using DigiMoviezClone.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 builder.Services.AddScoped<IMovieRepository, EfMovieRepository>();
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>

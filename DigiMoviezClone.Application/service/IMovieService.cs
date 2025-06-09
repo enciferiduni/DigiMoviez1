@@ -1,18 +1,12 @@
-﻿using DigiMoviezClone.API.DTOs;
-using DigiMoviezClone.Application.DTOs;
-using DigiMoviezClone.Domain.Entities;
+﻿using DigiMoviezClone.Domain.Entities;
 
 namespace DigiMoviezClone.Application.Services;
 
 public interface IMovieService
 {
     Task<Movie> createMovie(Movie movie);
-    
     Task<Movie> findMovie(int id);
-    Task UpdateAsync(Movie movie);
-    Task DeleteAsync(int id);
-    Task AddAsync(CreateMovieRequestDto movie);
-    Task<Movie?> GetByIdAsync(int id);
-    Task<Movie?> GetAllAsync();
-    Task<Movie> AddAsync();
+    Task<Movie> UpdateMovie(int id, Movie movie);
+    Task<Movie> DeleteMovie(int id);
+    Task<IEnumerable<Movie>> findAllMovies();
 }
