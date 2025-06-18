@@ -23,4 +23,10 @@
     <ProjectReference Include="..\DigiMoviezClone.Domain\DigiMoviezClone.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HlongPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Mvc.Core.dll</HlongPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

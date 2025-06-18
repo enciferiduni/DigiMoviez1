@@ -24,5 +24,7 @@ namespace DigiMoviezClone.API.Configuration
                 .As<IMapper>()
                 .InstancePerLifetimeScope();
         }
+        
+    
     }
 }

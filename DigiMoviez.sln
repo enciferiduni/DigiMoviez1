@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiMoviezClone.API", "Digi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Domain", "1-Domain", "{9FF42C47-9DBB-45E8-8C40-2EC9847947BF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Api", "2-Api", "{F0544AA6-4EB8-4A12-9FA6-4A8671104506}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Api", "4-Api", "{F0544AA6-4EB8-4A12-9FA6-4A8671104506}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Application", "3-Application", "{A523CA23-7532-4310-80A5-04CF28F2B54A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Application", "2-Application", "{A523CA23-7532-4310-80A5-04CF28F2B54A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infrastructure", "{29F5604F-81EC-4295-A8F8-4E1865013BDA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Infrastructure", "3-Infrastructure", "{29F5604F-81EC-4295-A8F8-4E1865013BDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

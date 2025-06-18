@@ -1,5 +1,5 @@
 using DigiMoviezClone.Infrastructure.Persistence;
-using DigiMoviezClone.Domain.Interfaces;
+using DigiMoviezClone.Domain.longerfaces;
 using DigiMoviezClone.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Autofac;
@@ -25,8 +25,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMovieService, MovieService>();
-
+builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IMovieRepository, EfMovieRepository>();
+builder.Services.AddScoped<IGenreRepository, EfGenreRepository>();
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterModule(new AutoMapperModule());

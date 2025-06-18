@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DigiMoviezClone.API.DTOs;
+using DigiMoviezClone.API.DTOs.Movie;
 using DigiMoviezClone.Domain.Entities;
 using DigiMoviezClone.Application.DTOs;
 
@@ -10,8 +11,11 @@ namespace DigiMoviezClone.Application.MappingProfiles
         public MovieProfile()
         {
             CreateMap<Movie, MovieResponseDto>();
-            CreateMap<CreateMovieRequestDto, Movie>();
-            CreateMap<UpdateMovieRequestDto, Movie>();
+            CreateMap<MovieRequestDto, Movie>();
+            CreateMap<Movie, MovieDto>();
         }
+
+     
+        
     }
 }

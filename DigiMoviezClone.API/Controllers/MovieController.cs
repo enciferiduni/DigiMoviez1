@@ -1,66 +1,63 @@
 ﻿using AutoMapper;
 using DigiMoviezClone.API.DTOs;
-using DigiMoviezClone.Application.DTOs;
+using DigiMoviezClone.API.DTOs.Movie;
 using DigiMoviezClone.Application.Services;
 using DigiMoviezClone.Domain.Entities;
-using DigiMoviezClone.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using DigiMoviezClone.Application.DTOs;
 
 namespace DigiMoviezClone.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class MovieController(IMovieService _service, IMapper _mapper)
+        : ControllerBase, IBaseController<MovieResponseDto, MovieRequestDto>
+    
     {
-        private readonly IMovieService _service;
-        private readonly IMapper _mapper;
-
-        public MovieController(IMovieService service, IMapper mapper)
-        {
-            _service = service;
-            _mapper = mapper;
-        }
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MovieResponseDto>>> GetAll()
         {
-            var movies = await _service.findAllMovies();
-            IEnumerable<MovieResponseDto> movieDtos = _mapper.Map<IEnumerable<MovieResponseDto>>(movies);
+            var movies = await _service.GetAll();
+            var movieDtos = _mapper.Map<IEnumerable<MovieResponseDto>>(movies);
             return Ok(movieDtos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<MovieResponseDto>> GetById(int id)
+        public async Task<ActionResult<MovieResponseDto>> GetById(long id)
         {
-            var movie = await _service.findMovie(id);
-            return Ok(movie);
+            var movie = await _service.GetById(id);
+            var dto = _mapper.Map<MovieResponseDto>(movie);
+            return Ok(dto);
         }
 
         [HttpPost]
-        public async Task<ActionResult<MovieResponseDto>> Create(CreateMovieRequestDto movie)
+        public async Task<ActionResult<MovieResponseDto>> Create(MovieRequestDto request)
         {
-            Movie mappedMovie = _mapper.Map<CreateMovieRequestDto, Movie>(movie);
-            Movie savedMovie = await _service.createMovie(mappedMovie);
-            MovieResponseDto responseDto = _mapper.Map<MovieResponseDto>(savedMovie);
+            var movie = _mapper.Map<Movie>(request);
+            var savedMovie = await _service.Create(movie);
+            var responseDto = _mapper.Map<MovieResponseDto>(savedMovie);
             return CreatedAtAction(nameof(GetById), new { id = responseDto.Id }, responseDto);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<MovieResponseDto>> Update(int id, UpdateMovieRequestDto movie)
+        public async Task<ActionResult<MovieResponseDto>> Update(long id, MovieRequestDto movieDto)
         {
-            Movie mappedMovie = _mapper.Map<UpdateMovieRequestDto, Movie>(movie);
-            Movie updateMovie = await _service.UpdateMovie(id, mappedMovie);
-            MovieResponseDto responseDto = _mapper.Map<MovieResponseDto>(updateMovie);
+            var movie = _mapper.Map<Movie>(movieDto);
+            var updatedMovie = await _service.Update(id, movie);
+            var responseDto = _mapper.Map<MovieResponseDto>(updatedMovie);
             return Ok(responseDto);
         }
 
-
         [HttpDelete("{id}")]
-        public async Task<ActionResult<MovieResponseDto>> Delete(int id)
+        public async Task<ActionResult<MovieResponseDto>> Delete(long id)
         {
-            Movie deleteMovie = await _service.DeleteMovie(id);
-            MovieResponseDto deletedMovie = _mapper.Map<MovieResponseDto>(deleteMovie);
-            return Ok(deletedMovie);
+            var deletedMovie = await _service.Delete(id);
+            var dto = _mapper.Map<MovieResponseDto>(deletedMovie);
+            return Ok(dto);
         }
+        
+
+    
+
     }
 }
