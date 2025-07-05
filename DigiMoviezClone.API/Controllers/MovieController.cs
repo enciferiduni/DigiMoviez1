@@ -5,15 +5,24 @@ using DigiMoviezClone.Application.Services;
 using DigiMoviezClone.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using DigiMoviezClone.Application.DTOs;
+using DigiMoviezClone.Domain.Entities.Movies;
+using DigiMoviezClone.Domain.Interfaces;
 
 namespace DigiMoviezClone.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class MovieController(IMovieService _service, IMapper _mapper)
-        : ControllerBase, IBaseController<MovieResponseDto, MovieRequestDto>
-    
+    [Route("api/[controller]")]
+    public class MovieController : ControllerBase, IBaseController<MovieResponseDto, MovieRequestDto>
     {
+        private readonly IMovieService _service;
+        private readonly IMapper _mapper;
+
+        public MovieController(IMovieService service, IMapper mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MovieResponseDto>>> GetAll()
         {
@@ -55,9 +64,8 @@ namespace DigiMoviezClone.API.Controllers
             var dto = _mapper.Map<MovieResponseDto>(deletedMovie);
             return Ok(dto);
         }
-        
-
-    
-
+ 
     }
+
+ 
 }

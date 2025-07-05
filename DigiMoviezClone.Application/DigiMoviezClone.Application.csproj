@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DigiMoviezClone.Domain\DigiMoviezClone.Domain.csproj" />
+    <ProjectReference Include="..\DigiMoviezClone.Infrastructure\DigiMoviezClone.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

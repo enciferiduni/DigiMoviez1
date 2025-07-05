@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "G:\\prooo\\DigiMoviez\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}|DigiMoviezClone.API\\DigiMoviezClone.API.csproj|g:\\prooo\\digimoviez\\digimoviezclone.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}|DigiMoviezClone.API\\DigiMoviezClone.API.csproj|solutionrelative:digimoviezclone.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|g:\\prooo\\digimoviez\\digimoviezclone.domain\\interfaces\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|solutionrelative:digimoviezclone.domain\\interfaces\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|g:\\prooo\\digimoviez\\digimoviezclone.domain\\interfaces\\ibaseservise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|solutionrelative:digimoviezclone.domain\\interfaces\\ibaseservise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IMovieService.cs",
+              "DocumentMoniker": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs",
+              "RelativeDocumentMoniker": "DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs",
+              "ToolTip": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs",
+              "RelativeToolTip": "DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:37:21.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IBaseServise.cs",
+              "DocumentMoniker": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs",
+              "RelativeDocumentMoniker": "DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs",
+              "ToolTip": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs",
+              "RelativeToolTip": "DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:36:56.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MovieController.cs",
+              "DocumentMoniker": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.API\\Controllers\\MovieController.cs",
+              "RelativeDocumentMoniker": "DigiMoviezClone.API\\Controllers\\MovieController.cs",
+              "ToolTip": "G:\\prooo\\DigiMoviez\\DigiMoviezClone.API\\Controllers\\MovieController.cs",
+              "RelativeToolTip": "DigiMoviezClone.API\\Controllers\\MovieController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:36:26.112Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"

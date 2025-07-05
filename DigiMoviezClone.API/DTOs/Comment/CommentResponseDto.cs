@@ -1,0 +1,10 @@
+﻿
+namespace DigiMoviezClone.API.DTOs
+{
+    public class CommentResponseDto
+    {
+        public long Id { get; set; }
+        public string Text { get; set; }
+        public DateTime CreatedAt { get; set; }
+    }
+}

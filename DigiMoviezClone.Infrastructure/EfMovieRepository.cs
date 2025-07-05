@@ -1,5 +1,5 @@
-﻿using DigiMoviezClone.Domain.Entities;
-using DigiMoviezClone.Domain.longerfaces;
+﻿using DigiMoviezClone.Domain.Entities.Movies;
+using DigiMoviezClone.Domain.Repositories;
 using DigiMoviezClone.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 

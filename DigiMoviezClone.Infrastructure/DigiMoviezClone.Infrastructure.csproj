@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,11 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DigiMoviezClone.Application\DigiMoviezClone.Application.csproj" />
     <ProjectReference Include="..\DigiMoviezClone.Domain\DigiMoviezClone.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="DigiMoviezClone.Application">
+      <HintPath>..\DigiMoviezClone.API\bin\Debug\net8.0\DigiMoviezClone.Application.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core" />
   </ItemGroup>
 

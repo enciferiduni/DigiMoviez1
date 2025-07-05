@@ -5,7 +5,10 @@ using DigiMoviezClone.Application.Services;
 using DigiMoviezClone.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using DigiMoviezClone.Application.DTOs;
-using DigiMoviezClone.Domain.longerfaces;
+using DigiMoviezClone.Domain.Interfaces;
+using DigiMoviezClone.Domain.Entities.Genres;
+using DigiMoviezClone.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigiMoviezClone.API.Controllers
 {
@@ -22,7 +25,7 @@ namespace DigiMoviezClone.API.Controllers
             var genreDtos = _mapper.Map<IEnumerable<GenreResponseDto>>(genres);
             return Ok(genreDtos);
         }
-
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<GenreResponseDto>> GetById(long id)
         {

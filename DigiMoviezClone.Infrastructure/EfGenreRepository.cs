@@ -1,6 +1,5 @@
-﻿using DigiMoviezClone.Application.Services;
-using DigiMoviezClone.Domain.Entities;
-using DigiMoviezClone.Domain.longerfaces;
+﻿using DigiMoviezClone.Domain.Entities.Genres;
+using DigiMoviezClone.Domain.Repositories;
 using DigiMoviezClone.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,16 +8,21 @@ namespace DigiMoviezClone.Infrastructure.Repositories
     public class EfGenreRepository : IGenreRepository 
     {
         private readonly AppDbContext _context;
-        private IGenreRepository _genreRepositoryImplementation;
    
 
+        public async Task<IEnumerable<Genre>> GetAllWithMoviesAsync()
+        {
+            return await _context.Genres
+                .Include(g => g.Movies)
+                .ToListAsync();
+        }
         public EfGenreRepository(AppDbContext context)
         {
             _context = context;
         }
 
         public async Task UpdateAsync(Genre genre)
-        {
+        {  
             _context.Genres.Update(genre);
             await _context.SaveChangesAsync();
         }
@@ -44,9 +48,11 @@ namespace DigiMoviezClone.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return genre;
         }
-        public async Task<Genre?> GetByIdAsync(long id)
+        public async Task<Genre> GetByIdAsync(long id)
         {
-            return await _context.Genres.FindAsync(id); 
+            return await _context.Genres
+                .Include(g => g.Movies)
+                .FirstOrDefaultAsync(g => g.Id == id);
         }
 
 
