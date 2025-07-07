@@ -18,7 +18,6 @@ namespace DigiMoviezClone.Application.MappingProfiles
             CreateMap<Genre, GenreResponseDto>()
                 .ForMember(dest => dest.Movies, opt => opt.MapFrom(src => src.Movies));
             CreateMap<Movie, MovieResponseDto>();
-
             CreateMap<GenreRequestDto, Genre>();
             CreateMap<Genre, GenreWithMoviesDto>()
                 .ForMember(dest => dest.GenreId, opt => opt.MapFrom(src => src.Id))

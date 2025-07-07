@@ -25,4 +25,47 @@ public class CommentController : ControllerBase
         var comments = await _commentService.GetCommentsByMovieIdAsync(movieId);
         return Ok(comments);
     }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(long id)
+    {
+        var comment = await _commentService.GetCommentByIdAsync(id);
+        if (comment == null)
+            return NotFound(new { message = "Comment not found" });
+
+        return Ok(comment);
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var comments = await _commentService.GetAllCommentsAsync();
+        return Ok(comments);
+    }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(long id, [FromBody] UpdateCommentDto dto)
+    {
+        try
+        {
+            await _commentService.UpdateCommentAsync(id, dto.Text);
+            return Ok(new { message = "Comment updated successfully" });
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(long id)
+    {
+        try
+        {
+            await _commentService.DeleteCommentAsync(id);
+            return Ok(new { message = "Comment deleted successfully" });
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
 }
