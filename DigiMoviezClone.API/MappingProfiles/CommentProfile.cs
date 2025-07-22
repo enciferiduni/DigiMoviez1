@@ -11,4 +11,6 @@ public class CommentProfile : Profile
         CreateMap<CommentDto, Comment>();
         CreateMap<Comment, CommentResponseDto>();
     }
+    
 }
+

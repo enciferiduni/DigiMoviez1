@@ -24,6 +24,8 @@ public class CommentRepository : ICommentRepository
     {
         return await _context.Comments
             .Where(c => c.MovieId == movieId)
+            .OrderBy(c => c.CreatedAt)
+            .OrderBy(c => c.CreatedAt)
             .ToListAsync();
     }
     

@@ -1,18 +1,23 @@
-﻿using DigiMoviezClone.API.DTOs;
+﻿using System.Security.Claims;
+using DigiMoviezClone.API.DTOs;
+using DigiMoviezClone.Domain.Entities.Comments;
 using DigiMoviezClone.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 [ApiController]
 [Route("api/[controller]")]
 public class CommentController : ControllerBase
 {
-    private readonly ICommentService _commentService;
+    
+    private readonly ICommentService _commentService ;
 
     public CommentController(ICommentService commentService)
     {
         _commentService = commentService;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create(CommentDto commentDto)
     {
         await _commentService.AddCommentAsync(commentDto);
@@ -24,7 +29,10 @@ public class CommentController : ControllerBase
     {
         var comments = await _commentService.GetCommentsByMovieIdAsync(movieId);
         return Ok(comments);
+        var list = await _commentService.GetCommentsByMovieIdAsync(movieId);
+        return Ok(list);
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(long id)
     {
@@ -34,12 +42,14 @@ public class CommentController : ControllerBase
 
         return Ok(comment);
     }
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         var comments = await _commentService.GetAllCommentsAsync();
         return Ok(comments);
     }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(long id, [FromBody] UpdateCommentDto dto)
     {
@@ -68,4 +78,18 @@ public class CommentController : ControllerBase
         }
     }
 
+    [HttpPost("add")]
+    [Authorize]
+    public async Task<IActionResult> CreateComment([FromBody] CreateCommentDto dto)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        await _commentService.AddCommentAsync(dto, userId);
+        return Ok(new { message = "Comment added" });
+    }
+
 }
+
+
+
+
+

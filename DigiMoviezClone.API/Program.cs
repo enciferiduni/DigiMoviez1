@@ -35,6 +35,10 @@ builder.Services.AddScoped<IMovieRepository, EfMovieRepository>();
 builder.Services.AddScoped<IGenreRepository, EfGenreRepository>();
 builder.Services.AddScoped<ICommentService,CommentService>();
 builder.Services.AddAutoMapper(typeof(CommentProfile));
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterModule(new AutoMapperModule());

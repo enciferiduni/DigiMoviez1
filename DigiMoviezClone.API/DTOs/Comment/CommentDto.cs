@@ -6,5 +6,7 @@ namespace DigiMoviezClone.API.DTOs
 
         public string Text { get; set; }
         public long MovieId { get; set; }
+
+
     }
 }

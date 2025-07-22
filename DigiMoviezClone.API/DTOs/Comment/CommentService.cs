@@ -10,13 +10,17 @@ public class CommentService : ICommentService
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
     private readonly ICommentRepository _commentRepository;
+    private readonly ICommentRepository _repo;
 
-    public CommentService(AppDbContext context, IMapper mapper, ICommentRepository commentRepository)
+    public CommentService(AppDbContext context, IMapper mapper, ICommentRepository commentRepository,ICommentRepository repo)
     {
         _context = context;
         _mapper = mapper;
-        _commentRepository = commentRepository; 
+        _commentRepository = commentRepository;
+        _repo = repo;
+
     }
+
     public async Task AddCommentAsync(CommentDto commentDto)
     {
         var movie = await _context.Movies.FindAsync(commentDto.MovieId);
@@ -43,7 +47,7 @@ public class CommentService : ICommentService
         };
     }
 
-    public  async Task<List<CommentResponseDto>> GetAllCommentsAsync()
+    public async Task<List<CommentResponseDto>> GetAllCommentsAsync()
     {
 
         var comments = await _commentRepository.GetAllAsync();
@@ -70,8 +74,16 @@ public class CommentService : ICommentService
         await _commentRepository.DeleteAsync(comment);
     }
 
+    public async Task AddCommentAsync(CreateCommentDto dto, string userId)
+    {
+        var comment = _mapper.Map<Comment>(dto);
+        comment.CreatedAt = DateTime.UtcNow;
+        comment.UserId = userId;
+        await _repo.AddAsync(comment);
+    }
 
-    public async Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movieId)
+
+public async Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movieId)
     {
         var comments = await _context.Comments
             .Where(c => c.MovieId == movieId)
@@ -79,8 +91,23 @@ public class CommentService : ICommentService
             .ToListAsync();
 
         return _mapper.Map<List<CommentResponseDto>>(comments);
+        
+        var flat = await _repo.GetByMovieIdAsync(movieId);
+
+        List<CommentResponseDto> Build(Comment c)
+        {
+            var dto = _mapper.Map<CommentResponseDto>(c);
+            dto.Replies = flat
+                .Where(x => x.ParentCommentId == c.Id)
+                .SelectMany(x => Build(x))
+                .ToList();
+            return new List<CommentResponseDto> { dto };
+        }
+
+        var roots = flat.Where(c => c.ParentCommentId == null);
+        return roots.SelectMany(c => Build(c)).ToList();
     }
-  
+    
 
 
 

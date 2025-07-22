@@ -1,0 +1,12 @@
+﻿using DigiMoviezClone.Domain.Entities.Movies;
+
+namespace DigiMoviezClone.Domain.Interfaces;
+
+
+public interface IMovieService : IBaseServise<Movie>
+{
+    Task<IEnumerable<Movie>> FindAllVahshatnakMovies();
+}
+
+
+

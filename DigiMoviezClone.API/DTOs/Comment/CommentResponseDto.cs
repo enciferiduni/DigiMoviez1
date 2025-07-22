@@ -5,6 +5,9 @@ namespace DigiMoviezClone.API.DTOs
     {
         public long Id { get; set; }
         public string Text { get; set; }
+        public string UserId { get; set; }               // شناسایی کاربر نویسنده
+        public long? ParentCommentId { get; set; }       // برای ریپلای
+        public List<CommentResponseDto> Replies { get; set; } = new(); // نگهداری پاسخ‌ها
         public DateTime CreatedAt { get; set; }
     }
 }
