@@ -11,6 +11,7 @@ public class CommentService : ICommentService
     private readonly IMapper _mapper;
     private readonly ICommentRepository _commentRepository;
     private readonly ICommentRepository _repo;
+    private ICommentService _commentServiceImplementation;
 
     public CommentService(AppDbContext context, IMapper mapper, ICommentRepository commentRepository,ICommentRepository repo)
     {
@@ -21,17 +22,9 @@ public class CommentService : ICommentService
 
     }
 
-    public async Task AddCommentAsync(CommentDto commentDto)
+    public Task AddCommentAsync(CommentDto commentDto, string userId)
     {
-        var movie = await _context.Movies.FindAsync(commentDto.MovieId);
-        if (movie == null)
-            throw new Exception("Movie not found");
-
-        var comment = _mapper.Map<Comment>(commentDto);
-        comment.CreatedAt = DateTime.UtcNow;
-
-        _context.Comments.Add(comment);
-        await _context.SaveChangesAsync();
+        throw new NotImplementedException();
     }
 
     public async Task<CommentResponseDto?> GetCommentByIdAsync(long id)
@@ -74,16 +67,13 @@ public class CommentService : ICommentService
         await _commentRepository.DeleteAsync(comment);
     }
 
-    public async Task AddCommentAsync(CreateCommentDto dto, string userId)
+    public Task AddCommentAsync(CreateCommentDto dto, string userId)
     {
-        var comment = _mapper.Map<Comment>(dto);
-        comment.CreatedAt = DateTime.UtcNow;
-        comment.UserId = userId;
-        await _repo.AddAsync(comment);
+        throw new NotImplementedException();
     }
 
 
-public async Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movieId)
+    public async Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movieId)
     {
         var comments = await _context.Comments
             .Where(c => c.MovieId == movieId)
@@ -91,25 +81,42 @@ public async Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movie
             .ToListAsync();
 
         return _mapper.Map<List<CommentResponseDto>>(comments);
-        
-        var flat = await _repo.GetByMovieIdAsync(movieId);
 
-        List<CommentResponseDto> Build(Comment c)
+    }
+
+    public async Task<List<CommentResponseDto>> GetTree(long movieId)
+    {
+        var flatEntities = await _repo.GetByMovieIdAsync(movieId);
+        var allDtos = _mapper.Map<List<CommentResponseDto>>(flatEntities);
+
+        CommentResponseDto BuildTree(CommentResponseDto dto)
         {
-            var dto = _mapper.Map<CommentResponseDto>(c);
-            dto.Replies = flat
-                .Where(x => x.ParentCommentId == c.Id)
-                .SelectMany(x => Build(x))
+            dto.Replies = allDtos
+                .Where(x => x.ParentCommentId == dto.Id)
+                .Select(BuildTree)
                 .ToList();
-            return new List<CommentResponseDto> { dto };
+            return dto;
         }
 
-        var roots = flat.Where(c => c.ParentCommentId == null);
-        return roots.SelectMany(c => Build(c)).ToList();
+        var roots = allDtos
+            .Where(x => x.ParentCommentId == null)
+            .ToList();
+
+        return roots.Select(BuildTree).ToList();
     }
-    
 
+    public Task AddCommentAsync(CommentDto commentDto)
+    {
+        throw new NotImplementedException();
+    }
 
-
+    public async Task<List<CommentResponseDto>> GetFlat(long movieId)
+    {
+        var flatEntities = await _repo.GetByMovieIdAsync(movieId);
+        return _mapper.Map<List<CommentResponseDto>>(flatEntities);
+        
+    }
 }
+
+
 

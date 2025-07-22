@@ -24,13 +24,26 @@ public class CommentController : ControllerBase
         return Ok(new { message = "Comment added successfully" });
     }
 
+    
     [HttpGet("movie/{movieId}")]
     public async Task<IActionResult> GetByMovie(long movieId)
     {
         var comments = await _commentService.GetCommentsByMovieIdAsync(movieId);
         return Ok(comments);
-        var list = await _commentService.GetCommentsByMovieIdAsync(movieId);
-        return Ok(list);
+        
+    }
+    [HttpGet("movie/{movieId}/flat")]
+    public async Task<IActionResult> GetFlat(long movieId)
+    {
+        var flatList = await _commentService.GetFlat(movieId);
+        return Ok(flatList);
+    }
+
+    [HttpGet("movie/{movieId}/tree")]
+    public async Task<IActionResult> GetTree(long movieId)
+    {
+        var treeList = await _commentService.GetTree(movieId);
+        return Ok(treeList);
     }
 
     [HttpGet("{id}")]
@@ -76,17 +89,8 @@ public class CommentController : ControllerBase
         {
             return NotFound(new { message = ex.Message });
         }
-    }
 
-    [HttpPost("add")]
-    [Authorize]
-    public async Task<IActionResult> CreateComment([FromBody] CreateCommentDto dto)
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        await _commentService.AddCommentAsync(dto, userId);
-        return Ok(new { message = "Comment added" });
-    }
-
+        }
 }
 
 
