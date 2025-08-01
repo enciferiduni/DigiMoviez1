@@ -41,20 +41,56 @@ public class CommentRepository : ICommentRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Comment id)
+    public async Task DeleteAsync(Comment comment)
     {
-        var comment = await _context.Comments.FindAsync(id);
-        if (comment != null)
+        var commentToDelete = await _context.Comments.FindAsync(comment.Id);
+        if (commentToDelete != null)
         {
-            _context.Comments.Remove(comment);
+            _context.Comments.Remove(commentToDelete);
             await _context.SaveChangesAsync();
         }
     }
-
 
     public async Task<List<Comment>> GetAllAsync()
     {
         return await _context.Comments.ToListAsync();
     }
 
+    // New methods for nested replies
+    public async Task<List<Comment>> GetCommentsTreeAsync(long movieId)
+    {
+        // Get all comments for the movie
+        var allComments = await _context.Comments
+            .Where(c => c.MovieId == movieId)
+            .Include(c => c.Replies)
+            .ToListAsync();
+
+        // Build the tree structure recursively
+        var rootComments = allComments.Where(c => c.ParentCommentId == null).ToList();
+        
+        foreach (var comment in rootComments)
+        {
+            BuildRepliesTree(comment, allComments);
+        }
+
+        return rootComments.OrderByDescending(c => c.CreatedAt).ToList();
+    }
+
+    private void BuildRepliesTree(Comment parentComment, List<Comment> allComments)
+    {
+        var replies = allComments.Where(c => c.ParentCommentId == parentComment.Id).ToList();
+        parentComment.Replies = replies.OrderBy(c => c.CreatedAt).ToList();
+        
+        foreach (var reply in replies)
+        {
+            BuildRepliesTree(reply, allComments);
+        }
+    }
+
+    public async Task<Comment?> GetCommentWithRepliesAsync(long commentId)
+    {
+        return await _context.Comments
+            .Include(c => c.Replies)
+            .FirstOrDefaultAsync(c => c.Id == commentId);
+    }
 }

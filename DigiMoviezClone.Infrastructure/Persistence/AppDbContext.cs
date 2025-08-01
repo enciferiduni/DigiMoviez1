@@ -26,7 +26,7 @@ public class AppDbContext : DbContext
             .WithMany(c => c.Replies)
             .HasForeignKey(c => c.ParentCommentId)
             .OnDelete(DeleteBehavior.Restrict);  
-        
+   
         base.OnModelCreating(modelBuilder);
         
     }

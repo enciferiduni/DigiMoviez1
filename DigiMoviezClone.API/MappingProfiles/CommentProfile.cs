@@ -2,17 +2,14 @@
 using DigiMoviezClone.API.DTOs;
 using DigiMoviezClone.Domain.Entities;
 using DigiMoviezClone.Domain.Entities.Comments;
-using static DigiMoviezClone.API.DTOs.CommentDto;
 
 public class CommentProfile : Profile
 {
     public CommentProfile()
     {
         CreateMap<CommentDto, Comment>();
-        CreateMap<Comment, CommentResponseDto>();
-        CreateMap<CreateCommentDto, Comment>();
-
+        CreateMap<Comment, CommentResponseDto>()
+            .ForMember(dest => dest.Replies, opt => opt.MapFrom(src => src.Replies));
     }
-    
 }
 

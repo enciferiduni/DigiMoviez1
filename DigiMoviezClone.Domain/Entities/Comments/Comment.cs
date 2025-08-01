@@ -14,9 +14,9 @@ public class Comment
     public Movie Movie { get; set; }
     public string? UserId { get; set; }
 
-    public long? ParentCommentId { get; set; } // بررسی شود
-    public  Comment ParentComment { get; set; }
-    public  ICollection<Comment> Replies { get; set; } = new List<Comment>();
+    public long? ParentCommentId { get; set; }
+    public Comment? ParentComment { get; set; }
+    public ICollection<Comment> Replies { get; set; } = new List<Comment>();
 }
 
 public class CommentConfiguration : IEntityTypeConfiguration<Comment>
@@ -27,6 +27,12 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
             .HasOne(c => c.Movie)
             .WithMany(m => m.Comments)
             .HasForeignKey(c => c.MovieId);
+
+        builder
+            .HasOne(c => c.ParentComment)
+            .WithMany(c => c.Replies)
+            .HasForeignKey(c => c.ParentCommentId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

@@ -8,7 +8,7 @@ namespace DigiMoviezClone.API.DTOs
         public DateTime CreatedAt { get; set; }
         public long? ParentCommentId { get; set; }
 
-        public List<CommentResponseDto> Replies { get; set; } = new List<CommentResponseDto>();
+        public List<CommentResponseDto> Replies { get; set; }
     }
 
 }
