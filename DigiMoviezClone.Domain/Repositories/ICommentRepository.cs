@@ -11,7 +11,4 @@ public interface ICommentRepository
     Task DeleteAsync(Comment comment);
     Task<List<Comment>> GetAllAsync();
     
-    // New methods for nested replies
-    Task<List<Comment>> GetCommentsTreeAsync(long movieId);
-    Task<Comment?> GetCommentWithRepliesAsync(long commentId);
 }

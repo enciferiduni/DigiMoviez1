@@ -21,12 +21,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new CommentConfiguration());
         modelBuilder.ApplyConfiguration(new MovieConfigurations()); 
 
-        modelBuilder.Entity<Comment>()
-            .HasOne(c => c.ParentComment)
-            .WithMany(c => c.Replies)
-            .HasForeignKey(c => c.ParentCommentId)
-            .OnDelete(DeleteBehavior.Restrict);  
-   
         base.OnModelCreating(modelBuilder);
         
     }

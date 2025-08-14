@@ -106,7 +106,7 @@ namespace DigiMoviezClone.Infrastructure.Migrations
                     b.HasOne("DigiMoviezClone.Domain.Entities.Movies.Movie", "Movie")
                         .WithMany("Comments")
                         .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DigiMoviezClone.Domain.Entities.Comments.Comment", "ParentComment")

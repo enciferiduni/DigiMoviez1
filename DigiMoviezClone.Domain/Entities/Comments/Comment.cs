@@ -26,7 +26,8 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
         builder
             .HasOne(c => c.Movie)
             .WithMany(m => m.Comments)
-            .HasForeignKey(c => c.MovieId);
+            .HasForeignKey(c => c.MovieId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasOne(c => c.ParentComment)

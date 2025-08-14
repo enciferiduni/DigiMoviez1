@@ -52,12 +52,7 @@ namespace DigiMoviezClone.Domain.Entities
             var existingMovie = await GetById(id);
             return await _genreRepository.DeleteAsync(existingMovie);
         }
-
-        public Task<IEnumerable<Movie>> findAllVahshatnakMovies()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         
     }
 }

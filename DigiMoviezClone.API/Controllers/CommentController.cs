@@ -17,25 +17,51 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create([FromBody] CommentDto commentDto)
+    [HttpPost("movie/{movieId}/create")]
+    public async Task<IActionResult> CreateOrReply(long? movieId = null, [FromBody] CommentDto commentDto = null)
     {
-        // Generate a simple user ID for demo purposes (you can replace this with actual user ID later)
-        var userId = "user-" + Guid.NewGuid().ToString("N")[..8];
-        
-        await _commentService.AddCommentAsync(commentDto, userId);
-        return Ok(new { message = "Comment added successfully" });
-    }
-
-    [HttpPost("reply")]
-    public async Task<IActionResult> AddReply([FromBody] CreateReplyDto replyDto)
-    {
-        // Generate a simple user ID for demo purposes (you can replace this with actual user ID later)
         var userId = "user-" + Guid.NewGuid().ToString("N")[..8];
 
         try
         {
-            var reply = await _commentService.AddReplyAsync(replyDto, userId);
-            return Ok(new { message = "Reply added successfully", reply });
+            if (commentDto.ParentCommentId == null)
+            {
+                // Create a new comment
+                if (movieId.HasValue)
+                {
+                    // Override movieId to ensure consistency when provided in route
+                    commentDto.MovieId = movieId.Value;
+                }
+                
+                await _commentService.AddCommentAsync(commentDto, userId);
+                return Ok(new { message = "Comment added successfully" });
+            }
+            else
+            {
+                // Add a reply
+                if (movieId.HasValue)
+                {
+                    // Use movie validation when movieId is provided in route
+                    var reply = await _commentService.AddReplyWithMovieValidationAsync(new CreateReplyDto
+                    {
+                        Text = commentDto.Text,
+                        ParentCommentId = commentDto.ParentCommentId.Value
+                    }, movieId.Value, userId);
+
+                    return Ok(new { message = "Reply added successfully", reply });
+                }
+                else
+                {
+                    // Use general approach when no movieId in route
+                    var reply = await _commentService.AddReplyAsync(new CreateReplyDto
+                    {
+                        Text = commentDto.Text,
+                        ParentCommentId = commentDto.ParentCommentId.Value
+                    }, userId);
+
+                    return Ok(new { message = "Reply added successfully", reply });
+                }
+            }
         }
         catch (Exception ex)
         {

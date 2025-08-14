@@ -68,10 +68,7 @@ namespace DigiMoviezClone.Application.Services
             return await _movieRepository.DeleteAsync(existingMovie);
         }
 
-        public Task<IEnumerable<Movie>> FindAllVahshatnakMovies()
-        {
-            throw new NotImplementedException();
-        }
+        
 
        
     }

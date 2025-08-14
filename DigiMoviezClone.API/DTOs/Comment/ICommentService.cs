@@ -11,14 +11,11 @@ public interface ICommentService
     Task DeleteCommentAsync(long id);
     
     Task<List<CommentResponseDto>> GetCommentsByMovieIdAsync(long movieId);
-    Task<List<CommentResponseDto>> GetFlat(long movieId);
-    Task<List<CommentResponseDto>> GetTree(long movieId);
 
     Task AddCommentAsync(CommentDto commentDto, string userId);
-    Task AddCommentAsync(CommentDto commentDto);
     
     // New methods for nested replies
     Task<CommentResponseDto> AddReplyAsync(CreateReplyDto replyDto, string userId);
-    Task<List<CommentResponseDto>> GetCommentsTreeAsync(long movieId);
+    Task<CommentResponseDto> AddReplyWithMovieValidationAsync(CreateReplyDto replyDto, long expectedMovieId, string userId);
 }
 

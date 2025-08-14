@@ -30,7 +30,7 @@ namespace DigiMoviezClone.Infrastructure.Migrations
                 column: "ParentCommentId",
                 principalTable: "Comments",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
