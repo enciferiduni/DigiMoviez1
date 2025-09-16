@@ -1,5 +1,5 @@
 ﻿
-namespace DigiMoviezClone.API.DTOs
+namespace DigiMoviezClone.API.DTOs.Comment
 {
     public class CommentResponseDto
     {

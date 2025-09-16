@@ -6,32 +6,26 @@ using DigiMoviezClone.Domain.Interfaces;
 using DigiMoviezClone.Domain.Entities.Genres;
 using DigiMoviezClone.Domain.Entities.Movies;
 
-
-
 namespace DigiMoviezClone.Application.Services
 {
-    public class MovieService: IMovieService
+    public class MovieService : IMovieService
     {
-      
-
         private readonly IMovieRepository _movieRepository;
         private readonly IGenreService _genreService;
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
- 
 
         public MovieService(IMovieRepository movieRepository, IGenreService genreService, AppDbContext context, IMapper mapper)
         {
             _movieRepository = movieRepository;
             _genreService = genreService;
             _context = context;
-            _mapper = mapper; 
+            _mapper = mapper;
         }
-        
 
-        public Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
-            return _movieRepository.GetAllAsync();
+            return await _movieRepository.GetAllAsync();
         }
 
         public async Task<Movie> GetById(long id)
@@ -44,14 +38,14 @@ namespace DigiMoviezClone.Application.Services
 
         public async Task<Movie> Create(Movie movie)
         {
-            Genre genre = _genreService.GetById(movie.GenreId).Result;
+            Genre genre = await _genreService.GetById(movie.GenreId);
             movie.Genre = genre;
             return await _movieRepository.AddAsync(movie);
         }
 
         public async Task<Movie> Update(long id, Movie movie)
         {
-            var existingMovie =  await GetById(id);
+            var existingMovie = await GetById(id);
 
             existingMovie.Title = movie.Title;
             existingMovie.Description = movie.Description;
@@ -62,16 +56,10 @@ namespace DigiMoviezClone.Application.Services
             return existingMovie;
         }
 
-        public async  Task<Movie> Delete(long id)
+        public async Task<Movie> Delete(long id)
         {
             var existingMovie = await GetById(id);
             return await _movieRepository.DeleteAsync(existingMovie);
         }
-
-        
-
-       
     }
-
-    
 }

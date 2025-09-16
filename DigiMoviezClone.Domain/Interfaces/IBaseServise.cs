@@ -1,6 +1,6 @@
 ﻿namespace DigiMoviezClone.Domain.Interfaces;
 
-public interface IBaseServise<T>
+public interface IBaseService<T>
     where T : class
 {
     Task<IEnumerable<T>> GetAll();

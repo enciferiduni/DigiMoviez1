@@ -2,7 +2,6 @@
 
 namespace DigiMoviezClone.Domain.Interfaces;
 
-public interface IGenreService : IBaseServise<Genre>
+public interface IGenreService : IBaseService<Genre>
 {
-
 }

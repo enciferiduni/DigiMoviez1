@@ -8,7 +8,6 @@ namespace DigiMoviezClone.Infrastructure.Repositories
     public class EfMovieRepository : IMovieRepository
     {
         private readonly AppDbContext _context;
-        private IMovieRepository _movieRepositoryImplementation;
 
         public EfMovieRepository(AppDbContext context)
         {
@@ -22,7 +21,6 @@ namespace DigiMoviezClone.Infrastructure.Repositories
             return movie;
         }
 
-
         public async Task<IEnumerable<Movie>> GetAllAsync()
         {
             return await _context.Movies.ToListAsync();
@@ -34,9 +32,10 @@ namespace DigiMoviezClone.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return movie;
         }
+
         public async Task<Movie?> GetByIdAsync(long id)
         {
-            return await _context.Movies.FindAsync(id); // ✅
+            return await _context.Movies.FindAsync(id);
         }
 
         public async Task UpdateAsync(Movie movie)
@@ -44,8 +43,5 @@ namespace DigiMoviezClone.Infrastructure.Repositories
             _context.Movies.Update(movie);
             await _context.SaveChangesAsync();
         }
-  
-
-
     }
 }

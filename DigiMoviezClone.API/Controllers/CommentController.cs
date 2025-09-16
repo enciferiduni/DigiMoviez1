@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using DigiMoviezClone.API.DTOs;
+using DigiMoviezClone.API.DTOs.Comment;
 using DigiMoviezClone.Domain.Entities.Comments;
 using DigiMoviezClone.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;

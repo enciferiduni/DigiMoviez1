@@ -4,8 +4,7 @@ using DigiMoviezClone.Domain.Entities.Movies;
 using DigiMoviezClone.Domain.Interfaces;
 using DigiMoviezClone.Domain.Repositories;
 
-
-namespace DigiMoviezClone.Domain.Entities
+namespace DigiMoviezClone.Application.Services
 {
     public class GenreService : IGenreService
     {
@@ -18,8 +17,7 @@ namespace DigiMoviezClone.Domain.Entities
 
         public async Task<IEnumerable<Genre>> GetAll()
         {
-            
-            return await _genreRepository.GetAllWithMoviesAsync();
+            return await _genreRepository.GetAllAsync();
         }
 
         public async Task<Genre> GetById(long id)
@@ -35,24 +33,21 @@ namespace DigiMoviezClone.Domain.Entities
             return await _genreRepository.AddAsync(genre);
         }
 
-        public async Task<Genre> Update(long id,Genre genre)
+        public async Task<Genre> Update(long id, Genre genre)
         {
-            var existingGenre =  await GetById(id);
+            var existingGenre = await GetById(id);
 
             existingGenre.Name = genre.Name;
-     
 
             await _genreRepository.UpdateAsync(existingGenre);
 
             return existingGenre;
         }
 
-        public async  Task<Genre> Delete(long id)
+        public async Task<Genre> Delete(long id)
         {
-            var existingMovie = await GetById(id);
-            return await _genreRepository.DeleteAsync(existingMovie);
+            var existingGenre = await GetById(id);
+            return await _genreRepository.DeleteAsync(existingGenre);
         }
-        
-        
     }
 }

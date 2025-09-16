@@ -5,6 +5,7 @@ using DigiMoviezClone.Application.Services;
 using DigiMoviezClone.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using DigiMoviezClone.Application.DTOs;
+using DigiMoviezClone.Application.DTOs.Movie;
 using DigiMoviezClone.Domain.Entities.Movies;
 using DigiMoviezClone.Domain.Interfaces;
 

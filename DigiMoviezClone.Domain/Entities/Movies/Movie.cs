@@ -13,5 +13,5 @@ public class Movie
     public long GenreId { get; set; }
     public Genre Genre { get; set; }
 
-    public ICollection<Comment> Comments { get; set; }
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 }

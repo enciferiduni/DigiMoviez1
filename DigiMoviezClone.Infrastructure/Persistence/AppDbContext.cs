@@ -2,6 +2,7 @@
 using DigiMoviezClone.Domain.Entities.Comments;
 using DigiMoviezClone.Domain.Entities.Genres;
 using DigiMoviezClone.Domain.Entities.Movies;
+using DigiMoviezClone.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigiMoviezClone.Infrastructure.Persistence;
@@ -14,15 +15,15 @@ public class AppDbContext : DbContext
     public DbSet<Genre> Genres { get; set; }
     
     public DbSet<Comment> Comments { get; set; }
+    public DbSet<User> Users { get; set; }
      
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new GenreConfiguration());
         modelBuilder.ApplyConfiguration(new CommentConfiguration());
         modelBuilder.ApplyConfiguration(new MovieConfigurations()); 
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         base.OnModelCreating(modelBuilder);
-        
     }
-  
 }

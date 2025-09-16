@@ -1,4 +1,5 @@
-﻿using DigiMoviezClone.Domain.Entities.Comments;
+﻿using DigiMoviezClone.API.DTOs.Comment;
+using DigiMoviezClone.Domain.Entities.Comments;
 using DigiMoviezClone.Domain.Interfaces;
 
 namespace DigiMoviezClone.API.DTOs;

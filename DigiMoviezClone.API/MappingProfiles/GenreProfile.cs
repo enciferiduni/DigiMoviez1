@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DigiMoviezClone.API.DTOs;
+using DigiMoviezClone.API.DTOs.Comment;
 using DigiMoviezClone.API.DTOs.Movie;
 using DigiMoviezClone.Domain.Entities;
 using DigiMoviezClone.Application.DTOs;

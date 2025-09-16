@@ -3,6 +3,7 @@ using AutoMapper;
 using DigiMoviezClone.Domain.Entities.Comments;
 using Microsoft.EntityFrameworkCore;
 using DigiMoviezClone.API.DTOs;
+using DigiMoviezClone.API.DTOs.Comment;
 using DigiMoviezClone.Domain.Repositories;
 
 public class CommentService : ICommentService
