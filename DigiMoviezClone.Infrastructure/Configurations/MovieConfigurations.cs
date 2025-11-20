@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DigiMoviezClone.Application.Configurations;
 
-public class MovieConfigurations : IEntityTypeConfiguration<Movie>
+public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 {
     public void Configure(EntityTypeBuilder<Movie> builder)
     {
