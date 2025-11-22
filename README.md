@@ -48,7 +48,7 @@ DigiMoviez is a modern web application designed for movie enthusiasts. It provid
 ## Screenshots
 
 ### Comment API Endpoints
-![Comment API Endpoints](screenshot/comment_endpoints.png)
+![Comment API Endpoints](screenshot\Get.comment.png)
 
 ## License
 This project is licensed under the MIT License.
