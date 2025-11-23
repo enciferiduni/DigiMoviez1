@@ -1,6 +1,5 @@
 ﻿using DigiMoviezClone.Domain.Repositories;
 using DigiMoviezClone.Application.DTOs.Users;
-using DigiMoviezClone.Application.Interfaces;
 using DigiMoviezClone.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
@@ -12,18 +11,18 @@ namespace DigiMoviezClone.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
-        private readonly ITokenService _tokenService;
+        private readonly IJwtService _jwtService;
         private readonly IMapper _mapper;
 
         public UserService(
             IUserRepository userRepository,
             IPasswordHasher<User> passwordHasher,
-            ITokenService tokenService,
+            IJwtService jwtService,
             IMapper mapper)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
-            _tokenService = tokenService;
+            _jwtService = jwtService;
             _mapper = mapper;
         }
 
@@ -38,10 +37,14 @@ namespace DigiMoviezClone.Application.Services
 
             await _userRepository.AddAsync(user);
 
-            var response = _mapper.Map<UserResponseDto>(user);
-            response.Token = _tokenService.CreateToken(user);
+            var savedUser = await _userRepository.GetByEmailAsync(dto.Email);
+
+            var response = _mapper.Map<UserResponseDto>(savedUser);
+            response.Token = _jwtService.GenerateToken(savedUser);
+
             return response;
         }
+
 
         public async Task<UserResponseDto?> LoginAsync(UserLoginDto dto)
         {
@@ -52,7 +55,7 @@ namespace DigiMoviezClone.Application.Services
             if (result == PasswordVerificationResult.Failed) return null;
 
             var response = _mapper.Map<UserResponseDto>(user);
-            response.Token = _tokenService.CreateToken(user);
+            response.Token = _jwtService.GenerateToken(user);
             return response;
         }
     }

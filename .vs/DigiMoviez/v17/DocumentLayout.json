@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{EDD56CF5-9CE3-4A8A-BF30-08E6CB8A2F50}|DigiMoviezClone.API\\DigiMoviezClone.API.csproj|solutionrelative:digimoviezclone.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|g:\\prooo\\digimoviez\\digimoviezclone.domain\\interfaces\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|solutionrelative:digimoviezclone.domain\\interfaces\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|g:\\prooo\\digimoviez\\digimoviezclone.domain\\interfaces\\ibaseservise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9823BA7D-763E-46C8-A088-253238CFDC94}|DigiMoviezClone.Domain\\DigiMoviezClone.Domain.csproj|solutionrelative:digimoviezclone.domain\\interfaces\\ibaseservise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\prooo\\DigiMoviez\\DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DigiMoviezClone.Domain\\Interfaces\\IBaseServise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +22,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -34,8 +38,7 @@
               "RelativeToolTip": "DigiMoviezClone.Domain\\Interfaces\\IMovieService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T12:37:21.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-02T12:37:21.245Z"
             },
             {
               "$type": "Document",
@@ -61,6 +64,10 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T12:36:26.112Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Bookmark",

@@ -1,9 +1,9 @@
-﻿using DigiMoviezClone.Application.Configurations;
-using DigiMoviezClone.Domain.Entities.Comments;
+﻿using DigiMoviezClone.Domain.Entities.Comments;
 using DigiMoviezClone.Domain.Entities.Genres;
 using DigiMoviezClone.Domain.Entities.Movies;
 using DigiMoviezClone.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using DigiMoviezClone.Infrastructure.Configurations;
 
 namespace DigiMoviezClone.Infrastructure.Persistence;
 
@@ -21,7 +21,7 @@ public class AppDbContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new GenreConfiguration());
         modelBuilder.ApplyConfiguration(new CommentConfiguration());
-        modelBuilder.ApplyConfiguration(new MovieConfigurations()); 
+        modelBuilder.ApplyConfiguration(new MovieConfiguration()); 
         modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         base.OnModelCreating(modelBuilder);

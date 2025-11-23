@@ -1,4 +1,4 @@
-namespace DigiMoviezClone.API.Configuration
+﻿namespace DigiMoviezClone.Application.Configuration
 {
     public class JwtSettings
     {
@@ -7,4 +7,4 @@ namespace DigiMoviezClone.API.Configuration
         public string Audience { get; set; } = string.Empty;
         public int ExpirationInMinutes { get; set; }
     }
-} 
+}

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using DigiMoviezClone.API.DTOs.Users;
-using DigiMoviezClone.Application.DTOs.User;
+using DigiMoviezClone.Application.DTOs.Users;
 using DigiMoviezClone.Domain.Entities.Users;
 
 namespace DigiMoviezClone.Application.MappingProfiles;

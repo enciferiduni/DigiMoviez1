@@ -1,9 +1,8 @@
-﻿using DigiMoviezClone.Domain.Entities;
-using DigiMoviezClone.Domain.Entities.Movies;
+﻿using DigiMoviezClone.Domain.Entities.Movies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DigiMoviezClone.Application.Configurations;
+namespace DigiMoviezClone.Infrastructure.Configurations;
 
 public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 {

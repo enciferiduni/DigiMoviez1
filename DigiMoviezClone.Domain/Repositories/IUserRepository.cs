@@ -1,6 +1,11 @@
-﻿namespace DigiMoviezClone.Domain.Repositories;
+﻿using DigiMoviezClone.Domain.Entities.Users;
 
-public class IUserRepository
+namespace DigiMoviezClone.Domain.Repositories;
+
+public interface  IUserRepository
 {
-    
+
+    Task<bool> EmailExistsAsync(string email);
+    Task AddAsync(User user);
+    Task<User?> GetByEmailAsync(string email);
 }

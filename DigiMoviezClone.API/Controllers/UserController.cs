@@ -1,7 +1,4 @@
-﻿
-using DigiMoviezClone.API.DTOs.Users;
-using DigiMoviezClone.Application.DTOs.User;   
-using DigiMoviezClone.Application.Services;
+﻿using DigiMoviezClone.Application.DTOs.Users;
 using DigiMoviezClone.Domain.Interfaces; // IUserService از لایه Application
 using Microsoft.AspNetCore.Mvc;
 

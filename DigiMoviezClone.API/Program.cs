@@ -1,6 +1,7 @@
 using DigiMoviezClone.Infrastructure.Persistence;
 using DigiMoviezClone.Domain.Entities;
 using DigiMoviezClone.Infrastructure.Repositories;
+using DigiMoviezClone.Application.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -15,7 +16,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DigiMoviezClone.API.DTOs;
-using DigiMoviezClone.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,14 +42,10 @@ builder.Services.AddScoped<IMovieRepository, EfMovieRepository>();
 builder.Services.AddScoped<IGenreRepository, EfGenreRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<IJwtService, JwtService>();
-
-
 // JWT settings
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("JwtSettings"));
 
-builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 // Authentication & Authorization

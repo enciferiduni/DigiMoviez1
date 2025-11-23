@@ -1,5 +1,5 @@
-﻿using DigiMoviezClone.Domain.Entities.Users;
-using System.Security.Claims;
+﻿using System.Security.Claims;
+using DigiMoviezClone.Domain.Entities.Users;
 
 namespace DigiMoviezClone.Application.Services
 {
